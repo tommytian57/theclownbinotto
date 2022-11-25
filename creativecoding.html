@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>10 second timer</title>
+    <style>
+      #timer {
+          display: block;
+          position: relative;
+          width: 200px;
+          margin: 5% auto;
+          padding: 5% auto;
+          text-align: center;
+      }
+
+      button {
+          display: block;
+          width: 100px;
+          height: 10%;
+          margin: 5% auto;
+          border: solid 3px black;
+          background-color: white;
+          font-size: 24px;
+      }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1 id="timer">Time's Up!</h1>
+    <button type="button" onclick="reStart()">Restart</button>
+    <script>
+        let lefttime = 10;
+        let clear;
+        let start;
+
+        function reStart() {
+            start = setTimeout(countDown, 1000);
+            if (lefttime <= 0) {
+                lefttime = 10;
+                start;
+            } else {
+                lefttime = lefttime-1;
+                setTimeout(countDown, 1000);
+            }
+        }
+
+        function countDown() {
+            $("#timer").html(lefttime);
+            if (lefttime <= 0) {
+                $("#timer").html("Time's Up!");
+            } else {
+                lefttime = lefttime - 1;
+                setTimeout(countDown, 1000);
+            }
+        }
+    </script>
+</body>
+</html>
